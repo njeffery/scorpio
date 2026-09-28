@@ -926,7 +926,7 @@ int rearrange_comp2io(iosystem_desc_t *ios, io_desc_t *iodesc, file_desc_t *file
                      *  is 1, the stride here is the length of the
                      *  collected array (llen). */
 #if PIO_USE_MPISERIAL
-                    if ((mpierr = MPI_Type_hvector(nvars, 1, (MPI_Aint)iodesc->llen * iodesc->mpitype_size,
+                    if ((mpierr = MPI_Type_create_hvector(nvars, 1, (MPI_Aint)iodesc->llen * iodesc->mpitype_size,
                                                    iodesc->rtype[i], &recvtypes[i])))
                     {
                         GPTLstop("PIO:rearrange_comp2io");
@@ -956,7 +956,7 @@ int rearrange_comp2io(iosystem_desc_t *ios, io_desc_t *iodesc, file_desc_t *file
                          recvcounts[iodesc->rfrom[i]]));
 
 #if PIO_USE_MPISERIAL
-                    if ((mpierr = MPI_Type_hvector(nvars, 1, (MPI_Aint)iodesc->llen * iodesc->mpitype_size,
+                    if ((mpierr = MPI_Type_create_hvector(nvars, 1, (MPI_Aint)iodesc->llen * iodesc->mpitype_size,
                                                    iodesc->rtype[i], &recvtypes[iodesc->rfrom[i]])))
                     {
                         GPTLstop("PIO:rearrange_comp2io");
@@ -1002,7 +1002,7 @@ int rearrange_comp2io(iosystem_desc_t *ios, io_desc_t *iodesc, file_desc_t *file
                 LOG((3, "io task %d creating sendtypes[%d]", i, io_comprank));
                 sendcounts[io_comprank] = 1;
     #if PIO_USE_MPISERIAL
-                if ((mpierr = MPI_Type_hvector(nvars, 1, (MPI_Aint)iodesc->ndof * iodesc->mpitype_size,
+                if ((mpierr = MPI_Type_create_hvector(nvars, 1, (MPI_Aint)iodesc->ndof * iodesc->mpitype_size,
                                                iodesc->stype[i], &sendtypes[io_comprank])))
                 {
                     GPTLstop("PIO:rearrange_comp2io");
