@@ -449,7 +449,7 @@ if (MPISERIAL_C_FOUND)
   target_compile_definitions (spio_default_public_options
     INTERFACE MPI_SERIAL)
   target_include_directories (spio_default_public_options
-    INTERFACE ${MPISERIAL_C_INCLUDE_DIRS})
+    BEFORE INTERFACE ${MPISERIAL_C_INCLUDE_DIRS})
   target_link_libraries (spio_default_public_options INTERFACE ${MPISERIAL_C_LIBRARIES})
   set (WITH_PNETCDF FALSE)
 endif ()
